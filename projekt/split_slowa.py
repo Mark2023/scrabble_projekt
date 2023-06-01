@@ -1,4 +1,9 @@
 #!/bin/python
+
+# Marek Wiśniewski 338782
+# skrypt do rozdzielania słownika
+# 31.05.2023
+
 import os
 if not os.path.exists("slowa"):
     os.makedirs("slowa")
