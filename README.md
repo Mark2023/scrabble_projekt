@@ -20,7 +20,7 @@ Grę Możma uruchomić w trybach online i offline
 
 Żeby skompilować należy uruchomić skrypt ./compile.sh \
 Może to potrwać kilka sekund ponieważ skrypt w pythonie przetwarza słownik w formie tekstowej \
-odkompresowane dane zajmują ~40MB
+odkompresowane dane zajmują ~100MB
 
 ## Uruchamianie
 
