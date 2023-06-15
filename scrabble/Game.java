@@ -22,11 +22,11 @@ public class Game
     private Cursor cursor;
     private Turn turn;
     private boolean ended;
-    private Slownik slownik;
+    private Dictionary dictionary;
     public Game(PlayerFactory factory)
     {
-        slownik = new Slownik();
-        bag = new Bag(slownik);
+        dictionary = new Dictionary();
+        bag = new Bag(dictionary);
         cursor = new Cursor(this);
         board = new Board();
         LinkedList<PlayerHandler> tmp_players = new LinkedList<>();
@@ -49,7 +49,7 @@ public class Game
     public Cursor getCursor() { return cursor; }
     public Turn getTurn() { return turn; }
     public boolean ended() { return ended; }
-    public Slownik getSlownik() { return slownik; }
+    public Dictionary getDictionary() { return dictionary; }
     public void start_game()
     {
         if(players != null)
@@ -110,7 +110,7 @@ public class Game
                     if((tile.isEmpty() && ch != ' ') || 
                     (!tile.isEmpty() && !tile.getLetter().equals(ch)))
                     {
-                        tile.setLetter(new Letter(ch,slownik.points_for_letter(ch)));
+                        tile.setLetter(new Letter(ch,dictionary.points_for_letter(ch)));
                         tile.fixed = true;
                         tile.active = false;
                         player.hand.remove(ch);

@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import scrabble.NewGame;
-import scrabble.PlayerFactory;
 
 public class NewOfflineGame extends NewGame{
     JTextField[] nameFields;
@@ -44,7 +43,7 @@ public class NewOfflineGame extends NewGame{
         names = tmp_names.toArray(new String[tmp_names.size()]);
         return (2 <= names.length && names.length <= 4);
     }
-    public static PlayerFactory newGame()
+    public static OfflineFactory newGame()
     {
         NewOfflineGame newGame = new NewOfflineGame();
         try{

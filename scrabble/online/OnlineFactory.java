@@ -1,7 +1,7 @@
 /*
  * Marek Wiśniewski 338782
  * OnlineFactory - klasa łącząca graczy online
- * 31.05.2023
+ * 02.06.2023
  */
 package scrabble.online;
 
@@ -13,10 +13,6 @@ import scrabble.*;
 
 public class OnlineFactory implements PlayerFactory {
     public static final int portNumber0 = 57592;
-    public OnlineFactory () { // server ? network
-        //Socket socket = new Socket();
-        
-    }
     boolean start_game(String name,List<PlayerHandler> players,Game game)
     {
         boolean result = true;
@@ -27,24 +23,12 @@ public class OnlineFactory implements PlayerFactory {
             Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
             for (NetworkInterface netint : Collections.list(nets))
             {
-                boolean siteLocalAddress = false;
                 Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
                 List<InetAddress> listAddresses = Collections.list(inetAddresses);
                 for (InetAddress inetAddress : listAddresses)
-                    if(inetAddress.isSiteLocalAddress())
-                    {
-                        siteLocalAddress = true;
-                        System.out.printf("Display name: %s\nName: %s\nAddress: %s\n\n", netint.getDisplayName(), 
+                    System.out.printf("Display name: %s\nName: %s\nAddress: %s\n\n", netint.getDisplayName(), 
                                                                                          netint.getName(), 
                                                                                          inetAddress);
-                    }
-                    if(!siteLocalAddress)
-                    for (InetAddress inetAddress : listAddresses)
-                    {
-                        System.out.printf("Display name: %s\nName: %s\nAddress: %s\n\n", netint.getDisplayName(), 
-                                                                                         netint.getName(), 
-                                                                                         inetAddress);
-                    }
             }
 
             serverSocket = new ServerSocket(portNumber0);
@@ -127,7 +111,12 @@ public class OnlineFactory implements PlayerFactory {
             while(!(address = gm.receive()).isEmpty())
             {
                 pos++;
-                Socket newSocket = new Socket(address,Integer.valueOf(gm.receive()));
+                Socket newSocket = null;
+                int port = Integer.valueOf(gm.receive());
+                while(newSocket == null)
+                try{
+                    newSocket = new Socket(address,port);
+                }catch(ConnectException e){}
                 RemotePlayer pl = new RemotePlayer(newSocket,game);
                 me.addSocket(newSocket);
                 me.send(name,pos - 1);

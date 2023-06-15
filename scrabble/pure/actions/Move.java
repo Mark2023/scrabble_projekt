@@ -104,7 +104,7 @@ public class Move {
             for(Word w : words)
             {
                 String s = w.getWord();
-                if(s.length() > 1 && !game.getSlownik().find(s))
+                if(s.length() > 1 && !game.getDictionary().find(s))
                 {
                     return false;
                 }

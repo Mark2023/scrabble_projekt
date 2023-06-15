@@ -1,7 +1,7 @@
 /*
  * Marek Wiśniewski 338782
  * Tile - klasa pola(na planszy i stojakach)
- * 31.05.2023
+ * 01.06.2023
  */
 package scrabble.pure;
 
@@ -63,7 +63,7 @@ public class Tile {
     }
     public int getWordMultiplier()
     {
-        if(active && word_multiplier != 1)
+        if(!fixed && word_multiplier != 1)
         {
             active = false;
             return word_multiplier;
@@ -72,7 +72,7 @@ public class Tile {
     }
     public int getLetterMultiplier()
     {
-        if(active && letter_multiplier != 1)
+        if(!fixed && letter_multiplier != 1)
         {
             active = false;
             return letter_multiplier;

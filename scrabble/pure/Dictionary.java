@@ -1,23 +1,24 @@
 /*
  * Marek Wiśniewski 338782
- * Slownik - klasa słownika
- * 31.05.2023
+ * Dictionary - klasa słownika
+ * 01.06.2023
  */
 package scrabble.pure;
 
 import java.io.*;
+import scrabble.general.Ls;
 
-public class Slownik {
+public class Dictionary {
     public String path;
-    public Slownik()
+    public Dictionary()
     {
         path = "./slowa";
     }
-    public Slownik(String path)
+    public Dictionary(String path)
     {
         this.path = path;
     }
-    public Slownik(String path, Ls[] letters)
+    public Dictionary(String path, Ls[] letters)
     {
         this.path = path;
         this.letters = letters;
@@ -53,7 +54,7 @@ public class Slownik {
     }
     public static void main(String[] args)
     {
-        Slownik dict = new Slownik();
+        Dictionary dict = new Dictionary();
         String[] words = new String[]{"panda","razą","pędy","oż","dął",new String(new char[] {'d','ą','ł'})};
         for(String w : words)
         {
@@ -95,17 +96,4 @@ public class Slownik {
         new Ls('ż', 1, 5),
         new Ls('.', 2, 0),
     };
-}
-
-class Ls
-{
-    public Character letter;
-    public int points;
-    public int count;
-    public Ls(Character letter, int count, int points)
-    {
-        this.letter = letter;
-        this.points = points;
-        this.count = count;
-    }
 }

@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import scrabble.general.Ls;
+
 public class Bag {
     private LinkedList<Letter> letters;
     
@@ -82,10 +84,10 @@ public class Bag {
     {
         return letters.size();
     }
-    public Bag(Slownik slownik)
+    public Bag(Dictionary dictionary)
     {
         letters = new LinkedList<Letter>();
-        for(Ls l : slownik.letters)
+        for(Ls l : dictionary.letters)
         {
             for(int i=0; i<l.count; i++)
                 letters.add(new Letter(l.letter, l.points));
